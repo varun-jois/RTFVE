@@ -1,0 +1,38 @@
+name: exp_0  # name your experiments exp_1, exp_2 and so on
+description: ''  # place to write a description of the experiment.
+model_name: RTFVE
+discriminator_name: Shuffle_Discriminator_Norm  # if training a gan
+gan_loss: lsgan
+dataset: RefDataset
+paths:
+  train: 'path to train data' 
+  valid: 'path to valid data' 
+  checkpoints: 'checkpoints'  # where the model and log will be saved
+model:
+  nc: 64  # number of channels for each block
+  uf: 4  # how much to downsample the inputs to produce latents
+  lr: 64  # spatial size of the latent space
+train:
+  use_refs: 1  # number of high quality reference images to use
+  blur: [3, 0.8]  # [kernel_size, sigma] else None
+  seed: 13
+  batch_size: 8 
+  device: cuda
+  # losses
+  recreation_weight: 1
+  gan_weight: 0  # if this is greater than 0 we train a gan
+  perceptual_weight: 0  # if this is greater than 0 we use perceptual loss
+  style_weight: 0  # if this is greater than 0 we use style loss
+  layer_weights: 
+    conv5_4: 1.0
+  learning_rate: 0.0001  # learning rate for the model
+  offset_lr: 0.00001  # learning rate for the alignment module
+  scheduler: true
+  steps: [500, 900] 
+  gamma: 0.5
+  epoch_start: 0
+  epochs: 1000
+  valid_epoch: 0  # Validation every valid_epochs. If 0 then no validation.
+  save_epoch: 100
+  save_best: true  # whether to save the best model
+  save_thresh: 0.02
