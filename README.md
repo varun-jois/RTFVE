@@ -1,10 +1,11 @@
 # RTFVE: Realtime Face Video Enhancement
 Official repository for the CAIP 2025 paper [RTFVE: Realtime Face Video Enhancement](https://link.springer.com/chapter/10.1007/978-3-032-04968-1_12).
 
+![The RTFVE Model](/assets/RTFVE.png)
+
 [Download the demo of the model here.](/assets/supp.mp4)
 
 ### Dataprep
-![The RTFVE Model](/assets/RTFVE.png)
 Data needs to be prepared like in the example provided in sample_data/train. The high quality frames for the videos go in the hq folder and their corresponding low quality frames go in the lq folder. The naming convention for these frames is vidnum_framenum.png and the high quality reference frames goes in the ref/vidnum folder. Our model can use one or more high quality reference images for each input video frame. We recommend trying 1-5 reference images. Once you have prepared the dataset, go into configs/train.yaml and update the train and valid paths.
 
 ### Training
